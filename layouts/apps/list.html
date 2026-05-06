@@ -13,7 +13,7 @@
   <section class="rise rise-3">
     {{ range (where .Pages ".Params.hidden" "ne" true).ByParam "weight" }}
     <article class="app-card" id="{{ .File.ContentBaseName }}">
-      <div class="app-icon {{ .Params.icon_color }}">{{ .Params.icon }}</div>
+      {{ partial "app-icon.html" (dict "icon_img" .Params.icon_img "icon_color" .Params.icon_color "icon" .Params.icon "title" .Title) }}
       <div class="app-card-body">
         <h3>{{ .Title }}</h3>
         <div class="meta">

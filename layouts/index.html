@@ -38,7 +38,7 @@
     <ul class="row-list">
       {{ range first 2 (sort $featuredApps ".Params.weight") }}
       <li class="row">
-        <div class="app-icon {{ .Params.icon_color }}">{{ .Params.icon }}</div>
+        {{ partial "app-icon.html" (dict "icon_img" .Params.icon_img "icon_color" .Params.icon_color "icon" .Params.icon "title" .Title) }}
         <div class="row-body">
           <h3 class="row-title">
             {{ .Title }}

@@ -2,6 +2,7 @@
 title: "Babel"
 icon: "B"
 icon_color: "warm"
+icon_img: "/img/apps/babel.png"
 platforms: ["MacOS", "Linux"]
 version: "2.1"
 description: "A simple desktop translation app."

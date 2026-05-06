@@ -2,6 +2,7 @@
 title: "Bulb"
 icon: "B"
 icon_color: "coral"
+icon_img: "/img/apps/bulb.png"
 platforms: ["MacOS", "Linux"]
 version: "1.4"
 description: "Controller app for your ELK-based Bluetooth LED panels."

@@ -1,0 +1,7 @@
+{{ if .icon_img }}
+<div class="app-icon app-icon-img">
+  <img src="{{ .icon_img }}" alt="{{ .title }}" />
+</div>
+{{ else }}
+<div class="app-icon {{ .icon_color }}">{{ .icon }}</div>
+{{ end }}
