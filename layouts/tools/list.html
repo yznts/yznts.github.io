@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <section class="rise rise-2" style="margin-bottom: 48px;">
+    <p class="eyebrow">Tools</p>
+    <h1 class="display" style="font-size: clamp(34px, 5vw, 48px); margin-bottom: 18px;">
+      My personal set of <em>tools</em>.
+    </h1>
+    <p class="lede" style="font-size: 17px;">
+      Libraries and small command-line tools I publish along the way.
+    </p>
+  </section>
+
+  <section class="rise rise-3">
+    {{ range (where .Pages ".Params.hidden" "ne" true).ByParam "weight" }}
+    <article class="tool" id="{{ .File.ContentBaseName }}">
+      <div>
+        <h3 class="tool-name">
+          {{ with .Params.repo }}{{ . }}{{ else }}{{ .Title }}{{ end }}
+          {{ with .Params.tech }}<span class="lang">{{ . }}</span>{{ end }}
+        </h3>
+        <p class="tool-desc">{{ .Params.description }}</p>
+        {{ with .Params.install }}<code class="tool-install">{{ . }}</code>{{ end }}
+      </div>
+      <div class="tool-links">
+        {{ with .Params.github }}
+        <a class="btn-sm" href="{{ . }}" target="_blank" rel="noopener">GitHub ↗</a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </section>
+{{ end }}

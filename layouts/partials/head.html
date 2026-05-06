@@ -1,0 +1,15 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+{{ with .Params.description }}<meta name="description" content="{{ . }}" />
+{{ else }}{{ with .Site.Params.description }}<meta name="description" content="{{ . }}" />{{ end }}
+{{ end }}
+{{ $css := resources.Get "css/main.css" }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+<script>
+  (function(){
+    var s = localStorage.getItem('yz-theme');
+    var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+  })();
+</script>

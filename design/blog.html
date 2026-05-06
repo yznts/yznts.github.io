@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Yurii Zinets</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function(){
+      var s = localStorage.getItem('yz-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <style>
+    .year-group { margin-top: 56px; }
+    .year-group:first-of-type { margin-top: 32px; }
+    .year-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header rise">
+      <div class="site-mark"><a href="index.html">Yurii Zinets</a></div>
+      <nav class="site-nav">
+        <a href="apps.html">Apps</a>
+        <a href="tools.html">Tools</a>
+        <a href="blog.html">Blog</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <section class="rise rise-2" style="margin-bottom: 32px;">
+      <p class="eyebrow">Blog</p>
+      <h1 class="display" style="font-size: clamp(34px, 5vw, 48px); margin-bottom: 18px;">
+        Notes from the <em>workbench</em>.
+      </h1>
+      <p class="lede" style="font-size: 17px;">
+        Occasional posts on shipping software, learning Go in production,
+        and the small craft decisions that compound. <a href="rss.xml" style="color: var(--accent-ink); border-bottom: 1px solid var(--accent);">Subscribe via RSS</a>.
+      </p>
+    </section>
+
+    <section class="rise rise-3">
+      <div class="year-group">
+        <div class="year-label">2026</div>
+        <a href="#" class="post-row">
+          <div class="post-date">Apr 12</div>
+          <div>
+            <h3 class="post-title">On building Bulb in public</h3>
+            <p class="post-blurb">A few lessons from shipping a Bluetooth utility to two operating systems — and what I'd do differently next time.</p>
+          </div>
+          <div class="post-meta">7 min</div>
+        </a>
+        <a href="#" class="post-row">
+          <div class="post-date">Feb 28</div>
+          <div>
+            <h3 class="post-title">The case for tiny apps</h3>
+            <p class="post-blurb">Why I keep choosing scope over surface area, and how that's affected my design taste.</p>
+          </div>
+          <div class="post-meta">5 min</div>
+        </a>
+        <a href="#" class="post-row">
+          <div class="post-date">Jan 14</div>
+          <div>
+            <h3 class="post-title">A year of menu-bar apps</h3>
+            <p class="post-blurb">Patterns, anti-patterns, and a small SwiftUI gotcha that cost me a week.</p>
+          </div>
+          <div class="post-meta">9 min</div>
+        </a>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">2025</div>
+        <a href="#" class="post-row">
+          <div class="post-date">Nov 02</div>
+          <div>
+            <h3 class="post-title">Go, but make it small</h3>
+            <p class="post-blurb">My standard-library-only stack for backends that I want to read again in five years.</p>
+          </div>
+          <div class="post-meta">6 min</div>
+        </a>
+        <a href="#" class="post-row">
+          <div class="post-date">Aug 19</div>
+          <div>
+            <h3 class="post-title">BLE on Linux is hard. It doesn't have to be.</h3>
+            <p class="post-blurb">Notes from porting Bulb to Linux — what BlueZ gets right, where it bites, and a tiny abstraction that helped.</p>
+          </div>
+          <div class="post-meta">11 min</div>
+        </a>
+        <a href="#" class="post-row">
+          <div class="post-date">May 07</div>
+          <div>
+            <h3 class="post-title">Translation, but local</h3>
+            <p class="post-blurb">How Babel does on-device translation without making your laptop sound like a hairdryer.</p>
+          </div>
+          <div class="post-meta">8 min</div>
+        </a>
+        <a href="#" class="post-row">
+          <div class="post-date">Mar 21</div>
+          <div>
+            <h3 class="post-title">Designing for keyboard people</h3>
+            <p class="post-blurb">Hotkeys are a UI surface. Treat them like one.</p>
+          </div>
+          <div class="post-meta">4 min</div>
+        </a>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">2024</div>
+        <a href="#" class="post-row">
+          <div class="post-date">Dec 02</div>
+          <div>
+            <h3 class="post-title">Why I left the framework treadmill</h3>
+            <p class="post-blurb">A short reflection on choosing boring tools that age well.</p>
+          </div>
+          <div class="post-meta">3 min</div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div>© 2026 Yurii Zinets</div>
+      <div class="socials">
+        <a href="https://github.com/yznts" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/yurii-zinets-b91392144/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:yurii.zinets@icloud.com">Email</a>
+        <a href="rss.xml">RSS</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="shared.js"></script>
+  <script>
+    (function(){
+      var path = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.site-nav a').forEach(function(a){
+        if (a.getAttribute('href') === path) a.classList.add('is-active');
+      });
+    })();
+  </script>
+</body>
+</html>

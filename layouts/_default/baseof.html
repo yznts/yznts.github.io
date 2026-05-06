@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{ partial "head.html" . }}
+  {{ block "extra-head" . }}{{ end }}
+</head>
+<body>
+  <main class="page{{ block "page-class" . }}{{ end }}">
+    {{ partial "header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+  </main>
+  {{ $js := resources.Get "js/shared.js" }}
+  <script src="{{ $js.RelPermalink }}"></script>
+  {{ block "extra-js" . }}{{ end }}
+</body>
+</html>

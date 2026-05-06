@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <article class="rise rise-2">
+    <header class="post-header">
+      <p class="eyebrow">{{ dateFormat "Jan 2, 2006" .Date }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.description }}
+      <p class="lede" style="font-size: 17px; margin-bottom: 0;">{{ . }}</p>
+      {{ end }}
+      <div class="post-header-meta">
+        {{ with .Params.readtime }}<span class="post-meta">{{ . }} read</span>{{ end }}
+      </div>
+    </header>
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+    <footer class="post-footer">
+      <a href="/blog/" class="btn-sm">← All posts</a>
+    </footer>
+  </article>
+{{ end }}

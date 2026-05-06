@@ -1,0 +1,30 @@
+{{ define "main" }}
+  <section class="rise rise-2" style="margin-bottom: 32px;">
+    <p class="eyebrow">Blog</p>
+    <h1 class="display" style="font-size: clamp(34px, 5vw, 48px); margin-bottom: 18px;">
+      Notes from the <em>workbench</em>.
+    </h1>
+    <p class="lede" style="font-size: 17px;">
+      Occasional posts on shipping software, interesting cases and small crafts.
+      <a href="{{ "/blog/index.xml" | relURL }}" style="color: var(--accent-ink); border-bottom: 1px solid var(--accent);">Subscribe via RSS</a>.
+    </p>
+  </section>
+
+  <section class="rise rise-3">
+    {{ range (where .Pages ".Params.hidden" "ne" true).GroupByDate "2006" }}
+    <div class="year-group">
+      <div class="year-label">{{ .Key }}</div>
+      {{ range .Pages }}
+      <a class="post-row" href="{{ .RelPermalink }}">
+        <div class="post-date">{{ dateFormat "Jan 02" .Date }}</div>
+        <div>
+          <h3 class="post-title">{{ .Title }}</h3>
+          <p class="post-blurb">{{ .Params.description }}</p>
+        </div>
+        <div class="post-meta">{{ .Params.readtime }}</div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </section>
+{{ end }}

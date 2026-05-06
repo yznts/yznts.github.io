@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <article class="rise rise-2">
+    <header style="padding-bottom: 40px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 48px;">
+      <p class="eyebrow">{{ .Section }}</p>
+      <h1 class="display" style="font-size: clamp(32px, 5vw, 52px);">{{ .Title }}</h1>
+      {{ with .Params.description }}<p class="lede" style="font-size: 17px; margin-bottom: 0;">{{ . }}</p>{{ end }}
+    </header>
+    {{ if .Content }}
+    <div class="post-content">{{ .Content }}</div>
+    {{ end }}
+    <div style="margin-top: 48px;">
+      <a href="/{{ .Section }}/" class="btn-sm">← All {{ .Section }}</a>
+    </div>
+  </article>
+{{ end }}
