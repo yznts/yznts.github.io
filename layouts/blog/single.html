@@ -6,9 +6,6 @@
       {{ with .Params.description }}
       <p class="lede" style="font-size: 17px; margin-bottom: 0;">{{ . }}</p>
       {{ end }}
-      <div class="post-header-meta">
-        {{ with .Params.readtime }}<span class="post-meta">{{ . }} read</span>{{ end }}
-      </div>
     </header>
     <div class="post-content">
       {{ .Content }}
