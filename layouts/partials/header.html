@@ -1,8 +1,7 @@
 <header class="site-header rise">
   <div class="site-mark"><a href="/">{{ .Site.Title }}</a></div>
   <nav class="site-nav">
-    <a href="/apps/"{{ if eq .Section "apps" }} class="is-active"{{ end }}>Apps</a>
-    <a href="/tools/"{{ if eq .Section "tools" }} class="is-active"{{ end }}>Tools</a>
+    <a href="/#projects"{{ if eq .Section "projects" }} class="is-active"{{ end }}>Projects</a>
     <a href="/blog/"{{ if eq .Section "blog" }} class="is-active"{{ end }}>Blog</a>
     <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>

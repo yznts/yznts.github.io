@@ -1,0 +1,8 @@
+{{ if .icon_img }}
+<div class="project-icon project-icon-img">
+  <img src="{{ .icon_img }}" alt="{{ .title }}" />
+</div>
+{{ else }}
+{{/* no artwork yet — fall back to the title initial in the same tile shape */}}
+<div class="project-icon{{ with .icon_color }} {{ . }}{{ end }}">{{ .icon | default (substr .title 0 1 | upper) }}</div>
+{{ end }}

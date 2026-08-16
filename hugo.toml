@@ -3,16 +3,17 @@ locale = "en-us"
 title = "Yurii Zinets"
 copyright = "© 2026 Yurii Zinets"
 
+# tags are used as inline filters on /projects/, not as generated taxonomy pages
+disableKinds = ["taxonomy", "term"]
+
 [params]
-  description = "Yurii Zinets — desktop apps, tools, and writing."
+  description = "Yurii Zinets — projects and writing."
   location = "Kraków"
   role = "Software Engineer"
   [params.social]
     github    = "https://github.com/yznts"
     linkedin  = "https://www.linkedin.com/in/yurii-zinets-b91392144/"
     email     = "yurii.zinets@icloud.com"
-
-disableKinds = ["taxonomy", "term"]
 
 [markup]
   [markup.goldmark.renderer]

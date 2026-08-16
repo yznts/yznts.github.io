@@ -9,7 +9,11 @@
     <div class="post-content">{{ .Content }}</div>
     {{ end }}
     <div style="margin-top: 48px;">
+      {{ if eq .Section "projects" }}
+      <a href="/#projects" class="btn-sm">← All projects</a>
+      {{ else }}
       <a href="/{{ .Section }}/" class="btn-sm">← All {{ .Section }}</a>
+      {{ end }}
     </div>
   </article>
 {{ end }}

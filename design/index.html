@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yurii Zinets</title>
-  <meta name="description" content="Yurii Zinets — desktop apps, tools, and writing." />
+  <meta name="description" content="Yurii Zinets — projects and writing." />
   <link rel="stylesheet" href="styles.css" />
   <script>
     // pre-paint theme to avoid flash
@@ -21,8 +21,7 @@
     <header class="site-header rise">
       <div class="site-mark"><a href="index.html">Yurii Zinets</a></div>
       <nav class="site-nav">
-        <a href="apps.html">Apps</a>
-        <a href="tools.html">Tools</a>
+        <a href="#projects">Projects</a>
         <a href="blog.html">Blog</a>
         <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -59,60 +58,109 @@
       </p>
     </section>
 
-    <!-- ============================== APPS ============================== -->
-    <section class="section rise rise-3">
+    <!-- ============================== PROJECTS ============================== -->
+    <section class="section rise rise-3" id="projects">
       <div class="section-head">
-        <h2 class="section">Apps</h2>
-        <a class="more" href="apps.html">All apps</a>
+        <h2 class="section">Projects</h2>
       </div>
-      <ul class="row-list">
-        <li class="row">
-          <div class="app-icon coral">B</div>
-          <div class="row-body">
-            <h3 class="row-title">Bulb <span class="platforms">macOS · Linux</span></h3>
-            <p class="row-desc">A menu-bar controller for Bluetooth LED panels — colors, scenes, schedules.</p>
-          </div>
-          <div class="row-actions">
-            <a class="btn-sm" href="apps.html#bulb">Details</a>
-            <a class="btn-sm primary" href="#" target="_blank" rel="noopener">Get</a>
-          </div>
-        </li>
-        <li class="row">
-          <div class="app-icon warm">B</div>
-          <div class="row-body">
-            <h3 class="row-title">Babel <span class="platforms">macOS</span></h3>
-            <p class="row-desc">A keyboard-first translation app that lives one shortcut away.</p>
-          </div>
-          <div class="row-actions">
-            <a class="btn-sm" href="apps.html#babel">Details</a>
-            <a class="btn-sm primary" href="#" target="_blank" rel="noopener">Get</a>
-          </div>
-        </li>
-      </ul>
-    </section>
 
-    <!-- ============================== TOOLS ============================== -->
-    <section class="section rise rise-4">
-      <div class="section-head">
-        <h2 class="section">Tools</h2>
-        <a class="more" href="tools.html">All tools</a>
+      <div class="filter-bar" data-project-filter>
+        <button type="button" class="filter-chip is-active" data-tag="">All</button>
+        <button type="button" class="filter-chip" data-tag="cli">cli</button>
+        <button type="button" class="filter-chip" data-tag="desktop">desktop</button>
+        <button type="button" class="filter-chip" data-tag="go">go</button>
+        <button type="button" class="filter-chip" data-tag="library">library</button>
+        <button type="button" class="filter-chip" data-tag="linux">linux</button>
+        <button type="button" class="filter-chip" data-tag="macos">macos</button>
+        <button type="button" class="filter-chip" data-tag="utility">utility</button>
       </div>
-      <ul class="row-list no-divider">
-        <li class="row" style="grid-template-columns: 1fr auto;">
-          <div class="row-body">
-            <h3 class="row-title" style="font-size: 17px;">kitchen <span class="chip">Go</span></h3>
-            <p class="row-desc">A small set of pragmatic Go utilities I reach for in every project.</p>
+
+      <div data-project-list>
+        <article class="project-card" id="bulb" data-tags="desktop,utility,macos,linux">
+          <div class="project-icon coral">B</div>
+          <div class="project-card-body">
+            <h3>Bulb</h3>
+            <div class="tag-row">
+              <button type="button" class="tag" data-tag="desktop">desktop</button>
+              <button type="button" class="tag" data-tag="utility">utility</button>
+              <button type="button" class="tag" data-tag="macos">macos</button>
+              <button type="button" class="tag" data-tag="linux">linux</button>
+            </div>
+            <p>
+              A menu-bar controller for Bluetooth LED panels. Pick a color, save scenes,
+              schedule fades — without ever opening a janky vendor app. Bulb talks to the
+              panel directly over BLE and remembers what you like.
+            </p>
+            <div class="actions">
+              <span class="badge-soon">Coming soon</span>
+            </div>
           </div>
-          <a class="btn-sm" href="tools.html#kitchen">View →</a>
-        </li>
-        <li class="row" style="grid-template-columns: 1fr auto;">
-          <div class="row-body">
-            <h3 class="row-title" style="font-size: 17px;">wfs <span class="chip">CLI</span></h3>
-            <p class="row-desc">Watch the filesystem and run commands. Tiny, fast, no config.</p>
+        </article>
+
+        <article class="project-card" id="babel" data-tags="desktop,utility,macos,linux">
+          <div class="project-icon warm">B</div>
+          <div class="project-card-body">
+            <h3>Babel</h3>
+            <div class="tag-row">
+              <button type="button" class="tag" data-tag="desktop">desktop</button>
+              <button type="button" class="tag" data-tag="utility">utility</button>
+              <button type="button" class="tag" data-tag="macos">macos</button>
+              <button type="button" class="tag" data-tag="linux">linux</button>
+            </div>
+            <p>
+              Translation app that can live in your tray, react to shortcuts and use
+              different backends for translation.
+            </p>
+            <div class="actions">
+              <span class="badge-soon">Coming soon</span>
+            </div>
           </div>
-          <a class="btn-sm" href="tools.html#wfs">View →</a>
-        </li>
-      </ul>
+        </article>
+
+        <article class="project-card" id="databox" data-tags="cli,utility,go">
+          <div class="project-icon">D</div>
+          <div class="project-card-body">
+            <h3>databox</h3>
+            <div class="tag-row">
+              <button type="button" class="tag" data-tag="cli">cli</button>
+              <button type="button" class="tag" data-tag="utility">utility</button>
+              <button type="button" class="tag" data-tag="go">go</button>
+            </div>
+            <p>
+              A Swiss Army knife for databases in the command line. Unified UX for
+              SQLite, PostgreSQL, and MySQL with script-friendly output
+              (JSON, JSONL, CSV, SQL).
+            </p>
+            <div class="actions">
+              <a class="btn-sm" href="https://github.com/yznts/databox" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="zen" data-tags="library,go">
+          <div class="project-icon">Z</div>
+          <div class="project-card-body">
+            <h3>zen</h3>
+            <div class="tag-row">
+              <button type="button" class="tag" data-tag="library">library</button>
+              <button type="button" class="tag" data-tag="go">go</button>
+            </div>
+            <p>
+              Functional helpers and an HTTP router built around the standard library.
+              Used in every backend I ship.
+            </p>
+            <div class="actions">
+              <a class="btn-sm" href="https://github.com/yznts" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- ============================== WRITING ============================== -->
