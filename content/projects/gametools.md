@@ -2,7 +2,7 @@
 title: "Game Tools"
 tags: ["web", "gaming", "utility"]
 description: "Small browser tools for the parts of a game that live outside it."
-long_description: "The maps, the trackers and the spreadsheets that grow around a game you play for long enough. Each tool runs in the browser, keeps nothing, and does one job."
+long_description: "Resolve your small annoyances, simplify exploring, just make your gaming time more enjoyable."
 featured: true
 weight: 4
 aliases:
