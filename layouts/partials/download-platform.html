@@ -1,0 +1,14 @@
+{{/* Platform metadata shared by the download layouts.
+     order drives the display sequence, dicts are sorted by key otherwise. */}}
+{{ $platforms := dict
+  "macos"   (dict "label" "macOS")
+  "windows" (dict "label" "Windows")
+  "linux"   (dict "label" "Linux")
+}}
+{{ $arches := dict
+  "universal" "Apple Silicon & Intel"
+  "amd64"     "Intel / AMD (64-bit)"
+  "arm64"     "ARM (64-bit)"
+  "386"       "Intel / AMD (32-bit)"
+}}
+{{ return (dict "platforms" $platforms "arches" $arches "order" (slice "macos" "windows" "linux")) }}

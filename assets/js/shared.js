@@ -66,3 +66,96 @@
     document.addEventListener('DOMContentLoaded', bind);
   } else { bind(); }
 })();
+
+// downloads: platform detection, version switching, checksum copying
+(function() {
+  const PLATFORMS = [
+    { key: 'macos',   label: 'macOS',   match: /mac|iphone|ipad/i },
+    { key: 'windows', label: 'Windows', match: /win/i },
+    { key: 'linux',   label: 'Linux',   match: /linux|x11|cros/i },
+  ];
+
+  // Apple Silicon reports the same platform string as Intel, so the arch
+  // stays a guess: universal builds cover both, and the full list is
+  // always one scroll away.
+  function detect() {
+    const ua = navigator.userAgent || '';
+    const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    const haystack = platform + ' ' + ua;
+    const found = PLATFORMS.find(p => p.match.test(haystack));
+    if (!found) return null;
+    const arm = /arm|aarch64/i.test(ua) || (found.key === 'macos' && navigator.maxTouchPoints > 1);
+    return { key: found.key, label: found.label, arch: arm ? 'arm64' : 'amd64' };
+  }
+
+  function bind() {
+    const root = document.querySelector('[data-downloads]');
+    if (!root) return;
+
+    const select = root.querySelector('[data-dl-version]');
+    const prerelease = root.querySelector('[data-dl-prerelease]');
+    const releases = Array.from(root.querySelectorAll('[data-dl-release]'));
+    const hero = root.querySelector('[data-dl-hero]');
+    const primary = root.querySelector('[data-dl-primary]');
+    const primaryLabel = root.querySelector('[data-dl-primary-label]');
+    const primaryMeta = root.querySelector('[data-dl-primary-meta]');
+    const detected = detect();
+
+    function shown() {
+      return releases.find(r => r.dataset.dlRelease === select.value);
+    }
+
+    // The primary button follows the platform and the selected version.
+    function updatePrimary() {
+      if (!detected || !hero) return;
+      const release = shown();
+      if (!release) return;
+      const assets = Array.from(release.querySelectorAll('[data-dl-asset="' + detected.key + '"]'));
+      if (!assets.length) { hero.hidden = true; return; }
+      const asset = assets.find(a => a.dataset.dlArch === detected.arch)
+        || assets.find(a => a.dataset.dlArch === 'universal')
+        || assets[0];
+      hero.hidden = false;
+      primary.href = asset.href;
+      primaryLabel.textContent = 'Download for ' + detected.label;
+      const meta = asset.parentElement.querySelector('.dl-asset-meta');
+      primaryMeta.textContent = [asset.dataset.dlFile, meta && meta.querySelector('.dl-size') ?
+        meta.querySelector('.dl-size').textContent : ''].filter(Boolean).join(' · ');
+    }
+
+    function updateVersions() {
+      const withPre = prerelease && prerelease.checked;
+      Array.from(select.options).forEach(option => {
+        option.hidden = option.dataset.prerelease === 'true' && !withPre;
+      });
+      // Fall back to the newest visible version when the selected one hides.
+      const current = select.selectedOptions[0];
+      if (current && current.hidden) {
+        const next = Array.from(select.options).find(o => !o.hidden);
+        if (next) { select.value = next.value; }
+      }
+      releases.forEach(r => { r.hidden = r.dataset.dlRelease !== select.value; });
+      updatePrimary();
+    }
+
+    select.addEventListener('change', updateVersions);
+    if (prerelease) prerelease.addEventListener('change', updateVersions);
+
+    root.addEventListener('click', e => {
+      const copy = e.target.closest('[data-dl-copy]');
+      if (!copy) return;
+      navigator.clipboard && navigator.clipboard.writeText(copy.dataset.dlCopy);
+      const code = copy.querySelector('code');
+      if (!code) return;
+      const original = code.textContent;
+      code.textContent = 'copied';
+      setTimeout(() => { code.textContent = original; }, 900);
+    });
+
+    updateVersions();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else { bind(); }
+})();

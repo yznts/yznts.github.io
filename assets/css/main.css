@@ -827,3 +827,85 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
   .post-row .post-meta { display: none; }
   h1.display { font-size: 44px; }
 }
+
+/* ============================================================
+   Downloads
+   ------------------------------------------------------------
+   The hero button is filled in by javascript once the platform is
+   known; everything below it is plain markup, so the page stays
+   complete without it.
+   ============================================================ */
+
+.dl-hero {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 24px; margin-bottom: 32px;
+  background: var(--bg-soft); border: 1px solid var(--rule-soft); border-radius: var(--r-lg);
+}
+.dl-hero[hidden] { display: none; }
+
+.btn-lg {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--r-pill);
+  background: var(--accent); color: #fff; text-decoration: none;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600;
+  border: 1px solid transparent; transition: background-color .15s ease;
+}
+.btn-lg:hover { background: var(--accent-ink); }
+.btn-lg svg { width: 16px; height: 16px; }
+
+.dl-hero-meta {
+  margin: 0; color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;
+}
+
+.dl-controls {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--rule-soft);
+}
+.dl-field { display: flex; align-items: center; gap: 8px; }
+.dl-field > span, .dl-toggle > span { color: var(--ink-mute); font-size: 13px; }
+.dl-field select {
+  padding: 6px 10px; border-radius: var(--r-md);
+  border: 1px solid var(--rule); background: var(--bg); color: var(--ink);
+  font-family: var(--font-mono); font-size: 13px;
+}
+.dl-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.dl-toggle input { accent-color: var(--accent); }
+
+.dl-release[hidden] { display: none; }
+.dl-release-head { margin-bottom: 20px; }
+.dl-release-head h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+.dl-release-meta { margin: 0; color: var(--ink-mute); font-size: 13px; }
+
+.dl-tag {
+  padding: 2px 8px; border-radius: var(--r-pill);
+  background: var(--tag-bg); color: var(--warn);
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .04em;
+}
+
+.dl-platform { padding: 18px 0; border-top: 1px solid var(--rule-soft); }
+.dl-platform h3 {
+  margin: 0 0 12px; font-family: var(--font-display); font-size: 15px; font-weight: 600;
+}
+.dl-assets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.dl-assets li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.dl-asset-meta {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;
+}
+.dl-sha {
+  padding: 0; border: none; background: none; cursor: pointer;
+  color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px;
+}
+.dl-sha:hover { color: var(--accent-ink); }
+.dl-sha code { background: none; padding: 0; }
+
+.dl-note { margin: 12px 0 0; color: var(--ink-mute); font-size: 13px; }
+.dl-body { margin-top: 28px; }
+.dl-source { margin-top: 28px; font-size: 14px; }
+.dl-inline-meta { color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px; }
+
+@media (max-width: 600px) {
+  .dl-controls { gap: 12px; }
+  .dl-assets li { align-items: flex-start; }
+}

@@ -1,0 +1,10 @@
+{
+  "sources": [
+    {
+      "project": "zoetrope",
+      "repo": "yznts/releases",
+      "tag_prefix": "zoetrope-",
+      "keep": 10
+    }
+  ]
+}

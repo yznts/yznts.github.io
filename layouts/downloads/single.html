@@ -1,0 +1,112 @@
+{{ define "main" }}
+{{ $meta := partial "download-platform.html" . }}
+{{ $data := index .Site.Data.releases .Params.project }}
+{{ $releases := slice }}
+{{ with $data }}{{ $releases = default slice .releases }}{{ end }}
+{{ $stable := where $releases "channel" "stable" }}
+{{ $latest := index (default $releases $stable) 0 }}
+{{ $prereleases := where $releases "channel" "!=" "stable" }}
+
+<section class="rise rise-2">
+  <p class="eyebrow"><a href="/downloads/">Downloads</a></p>
+  <h1 class="display">{{ .Title }}</h1>
+  <p class="lede">{{ .Params.description }}</p>
+</section>
+
+{{ if $latest }}
+<section class="section rise rise-3" data-downloads data-latest="{{ $latest.version }}">
+
+  {{/* The browser knows which platform it runs on, so it picks the primary
+       button. Every build stays listed below, and the page works the same
+       without javascript. */}}
+  <div class="dl-hero" data-dl-hero hidden>
+    <a class="btn-lg" data-dl-primary href="#builds">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+      <span data-dl-primary-label>Download</span>
+    </a>
+    <p class="dl-hero-meta" data-dl-primary-meta></p>
+  </div>
+
+  <div class="dl-controls">
+    <label class="dl-field">
+      <span>Version</span>
+      <select data-dl-version>
+        {{ range $releases }}
+        <option value="{{ .version }}" data-channel="{{ .channel }}"
+          {{ if eq .version $latest.version }}selected{{ end }}
+          {{ if ne .channel "stable" }}data-prerelease="true"{{ end }}>
+          {{ .version }}{{ if ne .channel "stable" }} · {{ .channel }}{{ end }}
+        </option>
+        {{ end }}
+      </select>
+    </label>
+    {{ with $prereleases }}
+    <label class="dl-toggle">
+      <input type="checkbox" data-dl-prerelease>
+      <span>Show pre-releases</span>
+    </label>
+    {{ end }}
+  </div>
+
+  <div id="builds">
+    {{ range $releases }}
+    {{ $release := . }}
+    <div class="dl-release" data-dl-release="{{ .version }}" data-channel="{{ .channel }}"
+      {{ if ne .version $latest.version }}hidden{{ end }}>
+
+      <div class="dl-release-head">
+        <h2 class="section">
+          {{ .version }}
+          {{ if ne .channel "stable" }}<span class="dl-tag">{{ .channel }}</span>{{ end }}
+        </h2>
+        <p class="dl-release-meta">
+          {{ with .published }}<time datetime="{{ . }}">{{ dateFormat "2 January 2006" . }}</time>{{ end }}
+          {{ with .notes }} · <a href="{{ . }}" target="_blank" rel="noopener">Release notes</a>{{ end }}
+        </p>
+      </div>
+
+      {{ range $meta.order }}
+      {{ $key := . }}
+      {{ $platform := index $meta.platforms $key }}
+      {{ with where $release.assets "platform" $key }}
+      <div class="dl-platform" data-platform="{{ $key }}">
+        <h3>{{ $platform.label }}</h3>
+        <ul class="dl-assets">
+          {{ range . }}
+          <li>
+            <a class="btn-sm primary" href="{{ .url }}"
+               data-dl-asset="{{ $key }}" data-dl-arch="{{ .arch }}"
+               data-dl-file="{{ .file }}">
+              {{ (index $meta.arches .arch) | default .arch }}
+            </a>
+            <span class="dl-asset-meta">
+              {{ with .size }}<span class="dl-size">{{ lang.FormatNumber 1 (div (float .) 1048576) }} MB</span>{{ end }}
+              {{ with .sha256 }}
+              <button type="button" class="dl-sha" data-dl-copy="{{ . }}" title="Copy the sha256 checksum">
+                <code>{{ substr . 0 12 }}…</code>
+              </button>
+              {{ end }}
+            </span>
+          </li>
+          {{ end }}
+        </ul>
+        {{ with index $.Params.requirements $key }}<p class="dl-note">{{ . }}</p>{{ end }}
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  {{ with .Content }}<div class="dl-body">{{ . }}</div>{{ end }}
+  {{ with .Params.links.github }}
+  <p class="dl-source"><a href="{{ . }}" target="_blank" rel="noopener">Source on GitHub</a></p>
+  {{ end }}
+</section>
+{{ else }}
+<section class="section rise rise-3">
+  <p class="dl-empty">No builds published yet. {{ with .Params.links.github }}
+    Watch <a href="{{ . }}" target="_blank" rel="noopener">the repository</a> for the first release.{{ end }}</p>
+</section>
+{{ end }}
+{{ end }}
