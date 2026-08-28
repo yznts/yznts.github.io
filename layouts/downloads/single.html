@@ -61,7 +61,6 @@
         </h2>
         <p class="dl-release-meta">
           {{ with .published }}<time datetime="{{ . }}">{{ dateFormat "2 January 2006" . }}</time>{{ end }}
-          {{ with .notes }} · <a href="{{ . }}" target="_blank" rel="noopener">Release notes</a>{{ end }}
         </p>
       </div>
 

@@ -1,0 +1,28 @@
+# Static binary hosting for the download pages.
+#
+# Deployed to nue-4 at ~/Applications/Static. Sits behind the same traefik
+# as everything else, so tls and caching are Cloudflare's job, as usual.
+#
+# Files land in ./data/<project>/<version>/<file> and are served at
+# https://static.yznts.cc/<project>/<version>/<file>.
+
+name: static
+
+services:
+  static:
+    image: nginx:alpine
+    container_name: static
+    restart: unless-stopped
+    volumes:
+      - ./data:/srv:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - homebridge
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.static.rule=Host(`static.yznts.cc`)
+      - traefik.http.services.static.loadbalancer.server.port=80
+
+networks:
+  homebridge:
+    name: homebridge

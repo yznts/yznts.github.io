@@ -1,430 +1,58 @@
 {
-    "project": "babel",
-    "repo": "yznts/babel",
-    "updated": "2026-08-28T18:17:04Z",
-    "releases": [
+  "project": "babel",
+  "releases": [
+    {
+      "version": "2026.1-rc31",
+      "tag": "v2026.1-rc31",
+      "channel": "beta",
+      "published": "2026-08-23T13:59:38Z",
+      "assets": [
         {
-            "version": "2026.1-rc31",
-            "tag": "v2026.1-rc31",
-            "channel": "beta",
-            "published": "2026-08-23T13:59:38Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc31",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc31-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc31/babel-2026.1-rc31-darwin-universal.dmg",
-                    "size": 11787109,
-                    "sha256": "c430e7d71899d8b36309c1db1837321ed3eac706c69219b7acfbbc933a368a9f"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc31-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc31/babel-2026.1-rc31-linux-amd64",
-                    "size": 10991904,
-                    "sha256": "4011acee0774366c27337d50ae3944bb065906d721264f97df48e2c5e46fec02"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc31-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc31/babel-2026.1-rc31-windows-amd64.zip",
-                    "size": 4935764,
-                    "sha256": "e875d06257b225885c7c48e6905dc3e78723be65bda2878652100e35a2f3f4b9"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc31/babel.deb",
-                    "size": 5196610,
-                    "sha256": "8de10acb6ce3b2ef813a09e282462ce700254487be4bf3e38a9427a8f2f756c3"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc31/babel.pkg.tar.zst",
-                    "size": 5235366,
-                    "sha256": "c693bf0e3e4925b770635629131640d6cc109318e880b6a2f17fc03b43b7aa7e"
-                }
-            ]
+          "platform": "macos",
+          "arch": "universal",
+          "format": "dmg",
+          "file": "babel-2026.1-rc31-darwin-universal.dmg",
+          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-darwin-universal.dmg",
+          "size": 11787109,
+          "sha256": "c430e7d71899d8b36309c1db1837321ed3eac706c69219b7acfbbc933a368a9f"
         },
         {
-            "version": "2026.1-rc30",
-            "tag": "v2026.1-rc30",
-            "channel": "beta",
-            "published": "2026-08-23T07:30:58Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc30",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc30-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc30/babel-2026.1-rc30-darwin-universal.dmg",
-                    "size": 11787220,
-                    "sha256": "268392432fc339240727ab3a8ea6c8a5aa32265faa0430719ebd69822192f616"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc30-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc30/babel-2026.1-rc30-linux-amd64",
-                    "size": 10991904,
-                    "sha256": "f6f21a5d51df6dcb15f7be60651344b283a458bb4f4cde44a4084c330f4c25ad"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc30-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc30/babel-2026.1-rc30-windows-amd64.zip",
-                    "size": 4935723,
-                    "sha256": "f07cc4c928fa26461686cae5abeeb1d6f1225ae92cfbc5bb65f3b698f95842a8"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc30/babel.deb",
-                    "size": 5196576,
-                    "sha256": "a3972b9627e17829459cfd8a72ef8b362dbc775a2947969f4040633863d090d3"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc30/babel.pkg.tar.zst",
-                    "size": 5234267,
-                    "sha256": "a143b5114deeecfcf38f8c1e0732c5de4d6bc330f366ffea66616ec31826c84b"
-                }
-            ]
+          "platform": "linux",
+          "arch": "amd64",
+          "format": "binary",
+          "file": "babel-2026.1-rc31-linux-amd64",
+          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-linux-amd64",
+          "size": 10991904,
+          "sha256": "4011acee0774366c27337d50ae3944bb065906d721264f97df48e2c5e46fec02"
         },
         {
-            "version": "2026.1-rc29",
-            "tag": "v2026.1-rc29",
-            "channel": "beta",
-            "published": "2026-08-22T21:48:54Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc29",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc29-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc29/babel-2026.1-rc29-darwin-universal.dmg",
-                    "size": 11787667,
-                    "sha256": "b7a337ccf1064882ba8c683afe35332b4ec8c34e2044bb10d5e493ad7783d145"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc29-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc29/babel-2026.1-rc29-linux-amd64",
-                    "size": 10991904,
-                    "sha256": "a84c77fa59efce247f02bd7e6bc8168f9a3875837d3ef9c4eef126e7dc259bd6"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc29-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc29/babel-2026.1-rc29-windows-amd64.zip",
-                    "size": 4935759,
-                    "sha256": "5285e6452e7f3686bca739830def689bde5700b291587b2672eb74ff488a4968"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc29/babel.deb",
-                    "size": 5196550,
-                    "sha256": "1d39e9d2a9de5c178540c9b93059549bbef7d8bfb98d1c069a098733908e9c40"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc29/babel.pkg.tar.zst",
-                    "size": 5229993,
-                    "sha256": "e07e4a5fd93240f150d96c14ff33a7d131914648f83b895b020b9eda170caff1"
-                }
-            ]
+          "platform": "windows",
+          "arch": "amd64",
+          "format": "zip",
+          "file": "babel-2026.1-rc31-windows-amd64.zip",
+          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-windows-amd64.zip",
+          "size": 4935764,
+          "sha256": "e875d06257b225885c7c48e6905dc3e78723be65bda2878652100e35a2f3f4b9"
         },
         {
-            "version": "2026.1-rc28",
-            "tag": "v2026.1-rc28",
-            "channel": "beta",
-            "published": "2026-08-22T21:38:17Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc28",
-            "assets": [
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc28-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc28/babel-2026.1-rc28-linux-amd64",
-                    "size": 10991904,
-                    "sha256": "a84c77fa59efce247f02bd7e6bc8168f9a3875837d3ef9c4eef126e7dc259bd6"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc28-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc28/babel-2026.1-rc28-windows-amd64.zip",
-                    "size": 4935759,
-                    "sha256": "2db1ef1a9e8df6506cf7ef1c32b711b96b98ccafb642af2ac5c65592266d0a83"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc28/babel.deb",
-                    "size": 5196552,
-                    "sha256": "633a3abf31022b87a8c849254aa6f2533b5194456aaeaf4ed9a0007c896281e1"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc28/babel.pkg.tar.zst",
-                    "size": 5230011,
-                    "sha256": "d686e3fce36e50cc208f1b2da7675f1393ac4f347626579797e20d59cdf30eb4"
-                }
-            ]
+          "platform": "linux",
+          "arch": "amd64",
+          "format": "deb",
+          "file": "babel.deb",
+          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel.deb",
+          "size": 5196610,
+          "sha256": "8de10acb6ce3b2ef813a09e282462ce700254487be4bf3e38a9427a8f2f756c3"
         },
         {
-            "version": "2026.1-rc27",
-            "tag": "v2026.1-rc27",
-            "channel": "beta",
-            "published": "2026-08-22T20:49:19Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc27",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc27-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc27/babel-2026.1-rc27-darwin-universal.dmg",
-                    "size": 11786023,
-                    "sha256": "9f93ee78e464bd2e45e26e21a8bde21c29f18f43e59750c7dfc3b0f6f9c0ffe0"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc27-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc27/babel-2026.1-rc27-linux-amd64",
-                    "size": 10991904,
-                    "sha256": "e314ccded9ce01fea49eb6b387239ded8c1352f59f1a18317c69a0a7d7a5759c"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc27-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc27/babel-2026.1-rc27-windows-amd64.zip",
-                    "size": 4935412,
-                    "sha256": "fbc23852189e741f9a4af07c824ca086d3f0001af7c64b6629b89754894caadd"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc27/babel.deb",
-                    "size": 5196264,
-                    "sha256": "059ba360850c200bec93438253fcc8c648e31a222d91a96f72be7858dc61a074"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc27/babel.pkg.tar.zst",
-                    "size": 5231538,
-                    "sha256": "be9230dde7352285a951a43719de596476f916fab35c493510548d73d094f69e"
-                }
-            ]
-        },
-        {
-            "version": "2026.1-rc26",
-            "tag": "v2026.1-rc26",
-            "channel": "beta",
-            "published": "2026-08-21T14:25:39Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc26",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc26-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc26/babel-2026.1-rc26-darwin-universal.dmg",
-                    "size": 10748613,
-                    "sha256": "570ec2716644e2b1b2f72ab214463018d4055d8d9d3ef75f903843576d3a47dd"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc26-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc26/babel-2026.1-rc26-linux-amd64",
-                    "size": 10467616,
-                    "sha256": "3c9d10330576e720f8424a8ac03fbed683aef96e2a55dc6d287d888044dcd871"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc26-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc26/babel-2026.1-rc26-windows-amd64.zip",
-                    "size": 4421165,
-                    "sha256": "ce437bf0094b380b26defc87b9f282e86ecb1f0fef649ab3cdc9ae7bd6ef85a8"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc26/babel.deb",
-                    "size": 4683306,
-                    "sha256": "8b5d692f8996fed4f9637afb9964be7a9ec0acdcd135f58aa95b1179731f61f8"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc26/babel.pkg.tar.zst",
-                    "size": 4709433,
-                    "sha256": "c0b93bee30701e0af95d9c8a0a765a8dbbb0d4d19cf2f3306d5b06553c567c2f"
-                }
-            ]
-        },
-        {
-            "version": "2026.1-rc25",
-            "tag": "v2026.1-rc25",
-            "channel": "beta",
-            "published": "2026-08-21T02:35:18Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc25",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc25-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc25/babel-2026.1-rc25-darwin-universal.dmg",
-                    "size": 10748691,
-                    "sha256": "2c41d49441682849d0cca3e3149557eec7df84a3d23a5cdd7e96fa816b82c2b7"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc25-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc25/babel-2026.1-rc25-linux-amd64",
-                    "size": 10467616,
-                    "sha256": "8285910cae414c63de2c1cf9ea13fb89961fa1dbfc67b036fa8c79a6d9fd355c"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc25-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc25/babel-2026.1-rc25-windows-amd64.zip",
-                    "size": 4421391,
-                    "sha256": "d9c98f8514ec85702ab2a95aacba3d0720b0324f7b0afba21bf06ce62f6f3c8b"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc25/babel.deb",
-                    "size": 4683336,
-                    "sha256": "238a827a396b5d75d7ce858a367d6351d4a2620aba63f721c2150e251d032589"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc25/babel.pkg.tar.zst",
-                    "size": 4709741,
-                    "sha256": "798fb8d75badb60e3a445492d4c97d14fd45d8abfc84fd29adbaa91e36b1029a"
-                }
-            ]
-        },
-        {
-            "version": "2026.1-rc24",
-            "tag": "v2026.1-rc24",
-            "channel": "beta",
-            "published": "2026-08-21T01:54:46Z",
-            "notes": "https://github.com/yznts/babel/releases/tag/v2026.1-rc24",
-            "assets": [
-                {
-                    "platform": "macos",
-                    "arch": "universal",
-                    "format": "dmg",
-                    "file": "babel-2026.1-rc24-darwin-universal.dmg",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc24/babel-2026.1-rc24-darwin-universal.dmg",
-                    "size": 10748709,
-                    "sha256": "76024bd37dc393a1800b02e65a07044822b699d5d425e773e6bc852bdb74fffb"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "binary",
-                    "file": "babel-2026.1-rc24-linux-amd64",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc24/babel-2026.1-rc24-linux-amd64",
-                    "size": 10467616,
-                    "sha256": "8285910cae414c63de2c1cf9ea13fb89961fa1dbfc67b036fa8c79a6d9fd355c"
-                },
-                {
-                    "platform": "windows",
-                    "arch": "amd64",
-                    "format": "zip",
-                    "file": "babel-2026.1-rc24-windows-amd64.zip",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc24/babel-2026.1-rc24-windows-amd64.zip",
-                    "size": 4419615,
-                    "sha256": "c87d7a99d986220e2d7884335a467f7ceb8f76ac4cdf79087042a80e605271c2"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "deb",
-                    "file": "babel.deb",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc24/babel.deb",
-                    "size": 4357284,
-                    "sha256": "b8c0c255bb4c2016155b4afe0b9b5b58798b00533def31a7db0a1dcce37add4d"
-                },
-                {
-                    "platform": "linux",
-                    "arch": "amd64",
-                    "format": "arch",
-                    "file": "babel.pkg.tar.zst",
-                    "url": "https://yznts.cc/dl/babel/2026.1-rc24/babel.pkg.tar.zst",
-                    "size": 4380684,
-                    "sha256": "2ec299d93e54ea5398deeffa8c60b522d65fd575a6bda64d1d20659fa4a6e294"
-                }
-            ]
+          "platform": "linux",
+          "arch": "amd64",
+          "format": "arch",
+          "file": "babel.pkg.tar.zst",
+          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel.pkg.tar.zst",
+          "size": 5235366,
+          "sha256": "c693bf0e3e4925b770635629131640d6cc109318e880b6a2f17fc03b43b7aa7e"
         }
-    ]
+      ]
+    }
+  ]
 }
