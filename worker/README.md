@@ -28,8 +28,8 @@ Add it to `PROJECTS` in `src/index.js`:
 
 ```js
 const PROJECTS = {
-  babel:    { repo: 'yznts/babel',    tagPrefix: 'v' },
-  zoetrope: { repo: 'yznts/zoetrope', tagPrefix: 'v' },
+  babel:   { repo: 'yznts/babel',   tagPrefix: 'v' },
+  example: { repo: 'yznts/example', tagPrefix: 'v' },
 };
 ```
 
