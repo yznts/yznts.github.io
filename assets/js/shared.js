@@ -132,9 +132,10 @@
       hero.hidden = false;
       primary.href = asset.href;
       primaryLabel.textContent = 'Download for ' + detected.label;
-      const meta = asset.parentElement.querySelector('.dl-asset-meta');
-      primaryMeta.textContent = [asset.dataset.dlFile, meta && meta.querySelector('.dl-size') ?
-        meta.querySelector('.dl-size').textContent : ''].filter(Boolean).join(' · ');
+      // The row is a grid now, so the size is a sibling rather than nested.
+      const size = asset.parentElement.querySelector('.dl-size');
+      primaryMeta.textContent = [asset.dataset.dlFile, size && size.textContent.trim()]
+        .filter(Boolean).join(' · ');
     }
 
     // A project whose every release is still a pre-release (an rc series,

@@ -23,5 +23,9 @@
   "rpm"      "Fedora / RHEL (.rpm)"
   "arch"     "Arch (.pkg.tar.zst)"
   "appimage" "AppImage"
+  "zip"      "Archive (.zip)"
+  "tar.gz"   "Archive (.tar.gz)"
+  "tar.xz"   "Archive (.tar.xz)"
+  "binary"   "Binary"
 }}
 {{ return (dict "platforms" $platforms "arches" $arches "formats" $formats "order" (slice "macos" "windows" "linux")) }}

@@ -11,6 +11,7 @@
   <p class="eyebrow"><a href="/#projects">Projects</a> · Download</p>
   <h1 class="display">{{ .Title }}</h1>
   <p class="lede">{{ .Params.description }}</p>
+  {{ with .Content }}<div class="lede-body">{{ . }}</div>{{ end }}
 </section>
 
 {{ if $latest }}
@@ -74,21 +75,19 @@
           {{ range . }}
           <li>
             {{ $archLabel := (index $meta.arches .arch) | default .arch }}
-            {{ $formatLabel := index $meta.formats .format }}
-            <a class="btn-sm primary" href="{{ .url }}"
+            {{ $formatLabel := (index $meta.formats .format) | default $archLabel }}
+            <a class="btn-sm" href="{{ .url }}"
                data-dl-asset="{{ $key }}" data-dl-arch="{{ .arch }}"
                data-dl-format="{{ .format }}" data-dl-file="{{ .file }}">
-              {{ $formatLabel | default $archLabel }}
+              {{ $formatLabel }}
             </a>
-            <span class="dl-asset-meta">
-              {{ with $formatLabel }}<span class="dl-arch">{{ $archLabel }}</span>{{ end }}
-              {{ with .size }}<span class="dl-size">{{ lang.FormatNumber 1 (div (float .) 1048576) }} MB</span>{{ end }}
-              {{ with .sha256 }}
-              <button type="button" class="dl-sha" data-dl-copy="{{ . }}" title="Copy the sha256 checksum">
-                <code>{{ substr . 0 12 }}…</code>
-              </button>
-              {{ end }}
-            </span>
+            <span class="dl-arch">{{ $archLabel }}</span>
+            <span class="dl-size tnum">{{ with .size }}{{ lang.FormatNumber 1 (div (float .) 1048576) }} MB{{ end }}</span>
+            {{ with .sha256 }}
+            <button type="button" class="dl-sha" data-dl-copy="{{ . }}" title="Copy the sha256 checksum">
+              <code>{{ substr . 0 12 }}…</code>
+            </button>
+            {{ else }}<span></span>{{ end }}
           </li>
           {{ end }}
         </ul>
@@ -100,7 +99,6 @@
     {{ end }}
   </div>
 
-  {{ with .Content }}<div class="dl-body">{{ . }}</div>{{ end }}
   {{ with .Params.links.github }}
   <p class="dl-source"><a href="{{ . }}" target="_blank" rel="noopener">Source on GitHub</a></p>
   {{ end }}

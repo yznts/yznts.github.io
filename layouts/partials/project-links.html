@@ -7,7 +7,6 @@
 {{ with $data }}{{ $releases = default slice .releases }}{{ end }}
 {{ $page := .Site.GetPage (printf "/downloads/%s" $name) }}
 {{ $download := and $page (gt (len $releases) 0) }}
-{{ $stable := where $releases "channel" "stable" }}
 
 {{ if and .Params.coming_soon (not $download) }}
 <span class="badge-soon">Coming soon</span>
@@ -15,7 +14,7 @@
 {{ if $download }}
 <a class="btn-sm" href="{{ $page.RelPermalink }}">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
-  {{ if $stable }}Download{{ else }}Download beta{{ end }}
+  Download
 </a>
 {{ end }}
 {{ with .Params.links.appstore }}
