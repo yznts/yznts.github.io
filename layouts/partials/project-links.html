@@ -2,7 +2,7 @@
      means it is no longer "coming soon". Placeholder links (#) are left
      out rather than rendered as dead buttons. */}}
 {{ $name := .File.ContentBaseName }}
-{{ $data := index .Site.Data.releases $name }}
+{{ $data := index hugo.Data.releases $name }}
 {{ $releases := slice }}
 {{ with $data }}{{ $releases = default slice .releases }}{{ end }}
 {{ $page := .Site.GetPage (printf "/downloads/%s" $name) }}

@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $meta := partial "download-platform.html" . }}
-{{ $data := index .Site.Data.releases .Params.project }}
+{{ $data := index hugo.Data.releases .Params.project }}
 {{ $releases := slice }}
 {{ with $data }}{{ $releases = default slice .releases }}{{ end }}
 {{ $stable := where $releases "channel" "stable" }}
