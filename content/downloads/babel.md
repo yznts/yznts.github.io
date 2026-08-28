@@ -1,6 +1,6 @@
 ---
 title: "Babel"
-description: "Translation in the system tray, a shortcut away from any text."
+description: "Translation in the system tray, a shortcut away from any text. Select text anywhere, hit the shortcut, read it in your language — Babel stays out of the way until you need it."
 project: "babel"
 icon: "🗣"
 icon_color: "#cc785c"
@@ -10,6 +10,3 @@ requirements:
   windows: "Windows 10 or newer"
   linux: "glibc 2.35 or newer (Ubuntu 22.04 and up)"
 ---
-
-Select text anywhere, hit the shortcut, read it in your language. Babel sits in
-the tray and stays out of the way until you need it.

@@ -930,9 +930,6 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 .dl-source { margin-top: 28px; font-size: 14px; }
 .dl-inline-meta { color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px; }
 
-.lede-body { color: var(--ink-soft); max-width: 60ch; margin-bottom: 8px; }
-.lede-body p { margin: 0 0 12px; }
-
 @media (max-width: 640px) {
   .dl-controls { gap: 12px; }
   /* Columns stop earning their alignment on a narrow screen: the button
