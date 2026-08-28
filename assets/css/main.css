@@ -843,6 +843,12 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
    complete without it.
    ============================================================ */
 
+/* The page opens with one paragraph and goes straight to the builds, so
+   the rule under it keeps the same rhythm as the one under the controls
+   (20px above, 24px below) instead of the site's 56px section spacing. */
+.page-downloads .lede { margin-bottom: 20px; }
+.page-downloads .section { margin-top: 0; padding-top: 24px; }
+
 .dl-hero {
   display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   padding: 24px; margin-bottom: 32px;
