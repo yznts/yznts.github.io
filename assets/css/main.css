@@ -273,6 +273,10 @@
   --rule-soft: #e6dfd0;
   --accent:    #cc785c;
   --accent-ink:#a5573e;
+  /* Text on a filled surface. Fills are dark in this theme, light in
+     the other one, so the pairing has to flip with the theme rather
+     than being hard-coded white. */
+  --on-fill:   #ffffff;
   --tag-bg:    #ece4d2;
 
   /* status, deliberately separate from the accent */
@@ -306,6 +310,7 @@
   --rule-soft: #2a231d;
   --accent:    #e89479;
   --accent-ink:#f0a88e;
+  --on-fill:   #1a1613;
   --tag-bg:    #2a231d;
 
   --ok:   #7fa882;
@@ -329,7 +334,9 @@ html, body {
   transition: background-color .25s ease, color .25s ease;
 }
 
-::selection { background: var(--accent); color: #fff; }
+/* The accent is too light to carry text in either theme; the darker
+   accent does, with the ground colour on top. */
+::selection { background: var(--accent-ink); color: var(--on-fill); }
 
 a { color: var(--ink); text-decoration: none; }
 a:hover { color: var(--accent-ink); }
@@ -521,7 +528,7 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 .btn-sm.primary:hover {
   background: var(--accent-ink);
   border-color: var(--accent-ink);
-  color: #fff;
+  color: var(--on-fill);
 }
 .btn-sm svg { width: 12px; height: 12px; }
 
@@ -843,14 +850,22 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 }
 .dl-hero[hidden] { display: none; }
 
+/* The big button follows the primary button: ink at rest, accent on
+   hover. The accent is a mark elsewhere in the system, never a fill
+   under text — it carries neither white nor ground text at 4.5:1. */
 .btn-lg {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 22px; border-radius: var(--r-pill);
-  background: var(--accent); color: #fff; text-decoration: none;
+  background: var(--ink); color: var(--bg); text-decoration: none;
   font-family: var(--font-display); font-size: 15px; font-weight: 600;
-  border: 1px solid transparent; transition: background-color .15s ease;
+  border: 1px solid var(--ink);
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
 }
-.btn-lg:hover { background: var(--accent-ink); }
+.btn-lg:hover {
+  background: var(--accent-ink); border-color: var(--accent-ink);
+  color: var(--on-fill);
+}
+.btn-lg:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .btn-lg svg { width: 16px; height: 16px; }
 
 .dl-hero-meta {
