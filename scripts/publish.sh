@@ -2,10 +2,11 @@
 #
 # Publishes a release to the download pages.
 #
-# Binaries are served as plain files from nue-4 (~/Applications/Static),
-# so a download depends on nothing but that box: no tokens in the browser,
-# no worker, no third party. This script runs on your machine, with the
-# gh login and the ssh key you already have — nothing is stored in CI.
+# Binaries live in object storage under releases/, which a bucket policy
+# makes publicly readable for that prefix alone, so downloads are plain
+# links with no token in the browser, no worker and nothing to keep
+# running. This script uses the gh login and the ssh key you already have;
+# the storage credentials never leave nue-4.
 #
 # Usage:
 #   scripts/publish.sh babel v2026.1-rc31          # from a GitHub release
@@ -29,8 +30,8 @@ while [ $# -gt 0 ]; do
 done
 
 host="${STATIC_HOST:-nue-4}"
-root="${STATIC_ROOT:-Applications/Static/data}"
-base="${STATIC_BASE:-https://static.yznts.cc}"
+remote="${STATIC_REMOTE:-hetzner:yznts/releases}"
+base="${STATIC_BASE:-https://yznts.nbg1.your-objectstorage.com/releases}"
 sources="data/releases-sources.json"
 
 repo=$(jq -r --arg p "$project" '.sources[] | select(.project==$p) | .repo' "$sources")
@@ -129,14 +130,14 @@ for file in "$staging"/*; do
 done
 [ "$(jq 'length' <<<"$assets")" -gt 0 ] || { echo "nothing publishable in $tag" >&2; exit 1; }
 
-# Upload, then drop versions beyond the keep window.
-echo "uploading to $host:$root/$project/$version"
-# The rsync macOS ships (openrsync) creates no intermediate directories
-# and has no --chmod, so the target is prepared and fixed up over ssh.
-ssh "$host" "mkdir -p '$root/$project/$version'"
-rsync -a "$staging/" "$host:$root/$project/$version/"
-ssh "$host" "chmod 755 '$root/$project/$version' && chmod 644 '$root/$project/$version'/*"
-ssh "$host" "cd '$root/$project' && ls -1dt */ 2>/dev/null | tail -n +$((keep + 1)) | xargs -r rm -rf"
+# Upload through nue-4, which holds the storage credentials.
+# --s3-no-check-bucket keeps rclone from attempting CreateBucket, which
+# the provider rejects for an existing bucket in another location.
+echo "uploading to $remote/$project/$version"
+remotestaging="/tmp/publish-$project-$version"
+ssh "$host" "rm -rf '$remotestaging' && mkdir -p '$remotestaging'"
+rsync -a "$staging/" "$host:$remotestaging/"
+ssh "$host" "rclone copy --s3-no-check-bucket '$remotestaging/' '$remote/$project/$version/' && rm -rf '$remotestaging'"
 
 # Merge into the data file the pages read.
 out="data/releases/$project.json"
@@ -149,6 +150,15 @@ jq --arg version "$version" --arg tag "$tag" --arg channel "$channel" \
         + (.releases | map(select(.version != $version))))
     | .releases = (.releases | sort_by(.published) | reverse | .[:$keep])' \
    "$out" > "$out.tmp" && mv "$out.tmp" "$out"
+
+# Drop versions the pages no longer list, so storage tracks the data file.
+kept=$(jq -r '.releases[].version' "$out" | tr '\n' ' ')
+ssh "$host" "for dir in \$(rclone lsf --s3-no-check-bucket --dirs-only '$remote/$project/' 2>/dev/null); do
+  case ' $kept ' in
+    *\" \${dir%/} \"*) ;;
+    *) echo \"  pruning \${dir%/}\"; rclone purge --s3-no-check-bucket '$remote/$project/'\"\$dir\" ;;
+  esac
+done"
 
 echo
 echo "published $project $version ($channel), $(jq 'length' <<<"$assets") files"

@@ -12,7 +12,7 @@
           "arch": "universal",
           "format": "dmg",
           "file": "babel-2026.1-rc31-darwin-universal.dmg",
-          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-darwin-universal.dmg",
+          "url": "https://yznts.nbg1.your-objectstorage.com/releases/babel/2026.1-rc31/babel-2026.1-rc31-darwin-universal.dmg",
           "size": 11787109,
           "sha256": "c430e7d71899d8b36309c1db1837321ed3eac706c69219b7acfbbc933a368a9f"
         },
@@ -21,7 +21,7 @@
           "arch": "amd64",
           "format": "binary",
           "file": "babel-2026.1-rc31-linux-amd64",
-          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-linux-amd64",
+          "url": "https://yznts.nbg1.your-objectstorage.com/releases/babel/2026.1-rc31/babel-2026.1-rc31-linux-amd64",
           "size": 10991904,
           "sha256": "4011acee0774366c27337d50ae3944bb065906d721264f97df48e2c5e46fec02"
         },
@@ -30,7 +30,7 @@
           "arch": "amd64",
           "format": "zip",
           "file": "babel-2026.1-rc31-windows-amd64.zip",
-          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel-2026.1-rc31-windows-amd64.zip",
+          "url": "https://yznts.nbg1.your-objectstorage.com/releases/babel/2026.1-rc31/babel-2026.1-rc31-windows-amd64.zip",
           "size": 4935764,
           "sha256": "e875d06257b225885c7c48e6905dc3e78723be65bda2878652100e35a2f3f4b9"
         },
@@ -39,7 +39,7 @@
           "arch": "amd64",
           "format": "deb",
           "file": "babel.deb",
-          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel.deb",
+          "url": "https://yznts.nbg1.your-objectstorage.com/releases/babel/2026.1-rc31/babel.deb",
           "size": 5196610,
           "sha256": "8de10acb6ce3b2ef813a09e282462ce700254487be4bf3e38a9427a8f2f756c3"
         },
@@ -48,7 +48,7 @@
           "arch": "amd64",
           "format": "arch",
           "file": "babel.pkg.tar.zst",
-          "url": "https://static.yznts.cc/babel/2026.1-rc31/babel.pkg.tar.zst",
+          "url": "https://yznts.nbg1.your-objectstorage.com/releases/babel/2026.1-rc31/babel.pkg.tar.zst",
           "size": 5235366,
           "sha256": "c693bf0e3e4925b770635629131640d6cc109318e880b6a2f17fc03b43b7aa7e"
         }

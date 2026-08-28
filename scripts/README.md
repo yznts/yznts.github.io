@@ -1,21 +1,24 @@
 # Download pages
 
 These projects are closed source, so there is no repository to send anyone
-to. Binaries are served as plain static files from nue-4, and the pages are
+to. Binaries live in object storage under `releases/`, and the pages are
 built from `data/releases/*.json`.
 
-Nothing in this chain needs a token, a worker or a third party service. The
-site is static, the file server is nginx, and publishing runs from your
-machine with the `gh` login and ssh key you already have.
+Nothing in this chain runs or needs a token: the site is static, the files
+are objects, and publishing happens from your machine with the `gh` login
+and ssh key you already have. Storage credentials stay on nue-4.
 
 ```
 release in a private repo
-   │  scripts/publish.sh   (your machine: gh + rsync)
-   ├─ binaries ──→ nue-4:~/Applications/Static/data/<project>/<version>/
+   │  scripts/publish.sh   (your machine: gh + ssh)
+   ├─ binaries ──→ nue-4 ──rclone──→ s3://yznts/releases/<project>/<version>/
    └─ metadata ──→ data/releases/<project>.json ──→ commit ──→ Pages
                                                               │
-                        static.yznts.cc/<project>/<version>/<file>
+       https://yznts.nbg1.your-objectstorage.com/releases/<project>/<version>/<file>
 ```
+
+Public read is scoped to the `releases/` prefix by a bucket policy; see
+`deploy/storage/`.
 
 ## Publishing
 
@@ -28,21 +31,16 @@ git add data/releases && git commit -m "chore: publish babel 2026.1-rc31" && git
 The script uploads the files, prunes versions beyond `keep`, and merges the
 release into the data file with sizes and sha256 sums computed locally.
 
-Override the destination with `STATIC_HOST`, `STATIC_ROOT`, `STATIC_BASE`.
+Override the destination with `STATIC_HOST`, `STATIC_REMOTE`, `STATIC_BASE`.
 
-## The file server
+## The storage
 
-`deploy/static/` holds the compose file and nginx config deployed to
-nue-4 at `~/Applications/Static`. It sits behind the same traefik as the
-other apps, so Cloudflare terminates tls as usual.
+`deploy/storage/` holds the bucket policy and how to apply it. Listing is
+denied, so an unannounced build is not discoverable by browsing; only the
+exact key resolves.
 
-```sh
-scp deploy/static/* nue-4:~/Applications/Static/
-ssh nue-4 'cd ~/Applications/Static && docker compose up -d'
-```
-
-Directory listing is off, so an unannounced build is not discoverable, and
-paths carry the version, so files are served immutable and cache forever.
+The publish script prunes versions the data file no longer lists, so storage
+follows the pages rather than growing forever.
 
 ## Adding a project
 
