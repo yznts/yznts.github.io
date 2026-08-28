@@ -1,10 +1,10 @@
 {
   "sources": [
     {
-      "project": "zoetrope",
-      "repo": "yznts/releases",
-      "tag_prefix": "zoetrope-",
-      "keep": 10
+      "project": "babel",
+      "repo": "yznts/babel",
+      "tag_prefix": "v",
+      "keep": 8
     }
   ]
 }

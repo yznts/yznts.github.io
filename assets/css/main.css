@@ -870,6 +870,7 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 }
 .dl-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 .dl-toggle input { accent-color: var(--accent); }
+.dl-toggle.is-forced { cursor: default; opacity: .75; }
 
 .dl-release[hidden] { display: none; }
 .dl-release-head { margin-bottom: 20px; }

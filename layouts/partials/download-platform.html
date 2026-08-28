@@ -11,4 +11,17 @@
   "arm64"     "ARM (64-bit)"
   "386"       "Intel / AMD (32-bit)"
 }}
-{{ return (dict "platforms" $platforms "arches" $arches "order" (slice "macos" "windows" "linux")) }}
+{{/* Format labels. A package or an installer is what a person actually
+     picks between, so it names the button; plain archives fall back to
+     naming the architecture instead. */}}
+{{ $formats := dict
+  "dmg"      "Disk image (.dmg)"
+  "pkg"      "Installer (.pkg)"
+  "msi"      "Installer (.msi)"
+  "exe"      "Installer (.exe)"
+  "deb"      "Debian / Ubuntu (.deb)"
+  "rpm"      "Fedora / RHEL (.rpm)"
+  "arch"     "Arch (.pkg.tar.zst)"
+  "appimage" "AppImage"
+}}
+{{ return (dict "platforms" $platforms "arches" $arches "formats" $formats "order" (slice "macos" "windows" "linux")) }}

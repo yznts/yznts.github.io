@@ -31,10 +31,18 @@ jobs:
       - name: Check out
         uses: actions/checkout@v5
 
+      # The source repos are private, so the default token cannot see
+      # their releases. RELEASES_TOKEN is the same read only token the
+      # download worker uses.
       - name: Sync
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/sync-releases.sh
+          GH_TOKEN: ${{ secrets.RELEASES_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "RELEASES_TOKEN is not set: see worker/README.md" >&2
+            exit 1
+          fi
+          ./scripts/sync-releases.sh
 
       - name: Commit
         id: commit

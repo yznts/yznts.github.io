@@ -75,6 +75,14 @@
     { key: 'linux',   label: 'Linux',   match: /linux|x11|cros/i },
   ];
 
+  // What to hand someone who just clicks the big button: an installer
+  // beats a package, a package beats a bare binary.
+  const FORMATS = {
+    macos:   ['dmg', 'pkg', 'zip', 'tar.gz', 'binary'],
+    windows: ['msi', 'exe', 'zip', 'binary'],
+    linux:   ['appimage', 'deb', 'binary', 'tar.gz', 'rpm', 'arch'],
+  };
+
   // Apple Silicon reports the same platform string as Intel, so the arch
   // stays a guess: universal builds cover both, and the full list is
   // always one scroll away.
@@ -112,9 +120,15 @@
       if (!release) return;
       const assets = Array.from(release.querySelectorAll('[data-dl-asset="' + detected.key + '"]'));
       if (!assets.length) { hero.hidden = true; return; }
-      const asset = assets.find(a => a.dataset.dlArch === detected.arch)
-        || assets.find(a => a.dataset.dlArch === 'universal')
-        || assets[0];
+      // Rank by architecture first, then by how ready to run the format is.
+      const formats = FORMATS[detected.key] || [];
+      const rank = a => {
+        const arch = a.dataset.dlArch;
+        const fits = arch === detected.arch || arch === 'universal' ? 0 : 100;
+        const format = formats.indexOf(a.dataset.dlFormat);
+        return fits + (format === -1 ? formats.length : format);
+      };
+      const asset = assets.slice().sort((a, b) => rank(a) - rank(b))[0];
       hero.hidden = false;
       primary.href = asset.href;
       primaryLabel.textContent = 'Download for ' + detected.label;
@@ -123,8 +137,25 @@
         meta.querySelector('.dl-size').textContent : ''].filter(Boolean).join(' · ');
     }
 
+    // A project whose every release is still a pre-release (an rc series,
+    // say) has nothing to show with them hidden, so the toggle starts on.
+    const options = Array.from(select.options);
+    const anyStable = options.some(o => o.dataset.prerelease !== 'true');
+    if (prerelease && !anyStable) {
+      // Unchecking would leave nothing on the page, so the control says
+      // what is going on instead of pretending to be a choice.
+      prerelease.checked = true;
+      prerelease.disabled = true;
+      const label = prerelease.closest('.dl-toggle');
+      if (label) {
+        label.classList.add('is-forced');
+        const text = label.querySelector('span');
+        if (text) text.textContent = 'Pre-releases only, so far';
+      }
+    }
+
     function updateVersions() {
-      const withPre = prerelease && prerelease.checked;
+      const withPre = (prerelease && prerelease.checked) || !anyStable;
       Array.from(select.options).forEach(option => {
         option.hidden = option.dataset.prerelease === 'true' && !withPre;
       });

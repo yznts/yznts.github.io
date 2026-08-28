@@ -74,12 +74,15 @@
         <ul class="dl-assets">
           {{ range . }}
           <li>
+            {{ $archLabel := (index $meta.arches .arch) | default .arch }}
+            {{ $formatLabel := index $meta.formats .format }}
             <a class="btn-sm primary" href="{{ .url }}"
                data-dl-asset="{{ $key }}" data-dl-arch="{{ .arch }}"
-               data-dl-file="{{ .file }}">
-              {{ (index $meta.arches .arch) | default .arch }}
+               data-dl-format="{{ .format }}" data-dl-file="{{ .file }}">
+              {{ $formatLabel | default $archLabel }}
             </a>
             <span class="dl-asset-meta">
+              {{ with $formatLabel }}<span class="dl-arch">{{ $archLabel }}</span>{{ end }}
               {{ with .size }}<span class="dl-size">{{ lang.FormatNumber 1 (div (float .) 1048576) }} MB</span>{{ end }}
               {{ with .sha256 }}
               <button type="button" class="dl-sha" data-dl-copy="{{ . }}" title="Copy the sha256 checksum">

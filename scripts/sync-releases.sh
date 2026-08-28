@@ -3,8 +3,9 @@
 # Turns GitHub releases into data/releases/<project>.json, which the
 # download pages render. Sources are configured in data/releases-sources.json.
 #
-# Binaries live in a public repo so the pages can link them directly, with
-# no token in the browser and no proxy in front. Source repos stay private.
+# Only metadata is taken from GitHub. The download urls point at this site,
+# where a worker streams the bytes out of the private release assets, so a
+# closed source project is distributed without sending anyone to a repo.
 #
 # Checksums come from the releases api itself (assets carry a digest), so
 # nothing has to be downloaded to publish them.
@@ -18,27 +19,62 @@ cd "$(dirname "$0")/.."
 sources="data/releases-sources.json"
 only="${1:-}"
 
-# Asset filenames follow <project>-<version>-<platform>-<arch>.<ext>.
-# Anything unrecognised is skipped rather than guessed at: a wrong
-# platform label sends someone a binary that cannot run.
+# Downloads are served from this site, not from GitHub.
+base="${DOWNLOAD_BASE:-https://yznts.cc/dl}"
+
+# Assets are classified by filename into a platform, an arch and a format.
+# The format is what a person actually chooses between ("the .deb one"),
+# so it is carried separately from the arch.
+#
+# Anything unrecognised is skipped rather than guessed at: a wrong platform
+# label hands someone a binary that cannot run on their machine.
 classify() {
-  # Asset names vary in case (macOS, Darwin, Linux), so match on one form.
-  local name platform="" arch=""
+  local name platform="" arch="" format=""
   name=$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')
+
+  # Package formats name their platform by themselves, so they are checked
+  # first. .pkg.tar.zst is an arch linux package, .pkg a macos installer.
   case "$name" in
-    *darwin*|*macos*|*.dmg|*.pkg) platform="macos" ;;
-    *windows*|*.exe|*.msi)        platform="windows" ;;
-    *linux*)                      platform="linux" ;;
-    *)                            return 1 ;;
+    *.pkg.tar.zst|*.pkg.tar.xz) platform="linux";   format="arch" ;;
+    *.deb)                      platform="linux";   format="deb" ;;
+    *.rpm)                      platform="linux";   format="rpm" ;;
+    *.appimage)                 platform="linux";   format="appimage" ;;
+    *.dmg)                      platform="macos";   format="dmg" ;;
+    *.pkg)                      platform="macos";   format="pkg" ;;
+    *.msi)                      platform="windows"; format="msi" ;;
+    *.exe)                      platform="windows"; format="exe" ;;
   esac
+
+  if [ -z "$platform" ]; then
+    case "$name" in
+      *darwin*|*macos*) platform="macos" ;;
+      *windows*|*win32*|*win64*) platform="windows" ;;
+      *linux*) platform="linux" ;;
+      *) return 1 ;;
+    esac
+  fi
+
+  if [ -z "$format" ]; then
+    case "$name" in
+      *.zip)              format="zip" ;;
+      *.tar.gz|*.tgz)     format="tar.gz" ;;
+      *.tar.xz)           format="tar.xz" ;;
+      *)                  format="binary" ;;
+    esac
+  fi
+
   case "$name" in
-    *universal*)          arch="universal" ;;
-    *arm64*|*aarch64*)    arch="arm64" ;;
+    *universal*)            arch="universal" ;;
+    *arm64*|*aarch64*)      arch="arm64" ;;
     *amd64*|*x86_64*|*x64*) arch="amd64" ;;
-    *386*|*i386*)         arch="386" ;;
-    *)                    arch="amd64" ;;
+    *i386*|*386*)           arch="386" ;;
+    # Package files often carry no arch at all (babel.deb). The builds
+    # behind them are amd64 today, and a wrong arch label here is visible
+    # rather than silent: the page prints what it says.
+    *)                      arch="amd64" ;;
   esac
-  printf '%s %s' "$platform" "$arch"
+
+  printf '%s %s %s' "$platform" "$arch" "$format"
 }
 
 jq -c '.sources[]' "$sources" | while read -r source; do
@@ -90,15 +126,17 @@ jq -c '.sources[]' "$sources" | while read -r source; do
         # Checksum manifests and signatures are not downloads themselves.
         case "$name" in *checksums*|*.sha256|*.sig|*.asc) continue ;; esac
         classified=$(classify "$name") || continue
-        platform=${classified% *}
-        arch=${classified#* }
+        platform=$(echo "$classified" | cut -d' ' -f1)
+        arch=$(echo "$classified" | cut -d' ' -f2)
+        format=$(echo "$classified" | cut -d' ' -f3)
         digest=$(jq -r '.digest // ""' <<<"$asset")
 
         [ $first_asset -eq 0 ] && printf ',\n'
         first_asset=0
 
-        printf '        {\n          "platform": "%s",\n          "arch": "%s",\n' "$platform" "$arch"
-        printf '          "file": "%s",\n          "url": "%s",\n' "$name" "$(jq -r '.browser_download_url' <<<"$asset")"
+        printf '        {\n          "platform": "%s",\n          "arch": "%s",\n          "format": "%s",\n' "$platform" "$arch" "$format"
+        printf '          "file": "%s",\n          "url": "%s/%s/%s/%s",\n' \
+          "$name" "$base" "$project" "$version" "$name"
         printf '          "size": %s,\n          "sha256": "%s"\n        }' \
           "$(jq -r '.size' <<<"$asset")" "${digest#sha256:}"
       done < <(jq -c '.assets[]' <<<"$release")
